@@ -1,0 +1,85 @@
+*, *::before, *::after {
+box-sizing: border-box;
+font-family: Sporting Grotesque;
+}
+:root {
+--peach: #ed8e83;
+--correct: #f7b0be;
+--wrong: #ef3c23;
+--light: #fedad6;
+}
+
+body {
+padding: 0;
+margin: 0;
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: var(--peach);
+}
+
+body.correct {
+    background-color: var(--correct);
+}
+
+body.wrong {
+    background-color: var(--wrong);
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: #fae8dd;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px #ffaf80;
+}
+
+.btn-grid {
+    display:grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+
+}
+
+.btn {
+    background-color: var(--light);
+    border: 1px solid #ffaf80;
+    border-radius: 4px;
+    padding: 5px 10px;
+    color: #D9804c;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: #ce5a00;
+}
+
+.btn.correct {
+ background-color: var(--correct);
+ color: #fae8dd;
+}
+
+.btn.wrong {
+background-color: var(--wrong);
+color: #fae8dd;
+}
+
+.start-btn, .submit-btn, .back-btn {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.controls {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
