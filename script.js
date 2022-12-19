@@ -5,11 +5,14 @@ var answerEl = document.getElementById('answer-btn');
 var nextButton = document.getElementById('next');
 var timerEl = document.getElementById('timer');
 var resultsEl =document.getElementById('results');
+var scoreEl = document.getElementById('score');
+var inputEl = document.getElementById('username');
 
-
+var score = 0;
 var roundTime = 30;
 var quizTimer;
 let shuffleQuestions, currentQuestionIndex
+var correct_answers = 5;
 
 
 startButton.addEventListener('click', startGame);
@@ -19,7 +22,9 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame(){
+roundTime = 30;
 startTimer();
+score = 0;
 startButton.classList.add('hide')
 shuffleQuestions = questions.sort(() => Math.random() - .5)
 currentQuestionIndex = 0
@@ -28,16 +33,34 @@ setNextQuestion()
 }
 
 function startTimer(){
-    quizTimer =setInterval(){
-
+    timerEl.textContent = roundTime;
+    quizTimer =setInterval(function(){
+    roundTime--;
+    timerEl.textContent = roundTime;
+    if(roundTime <= 0){
+        gameOver();
     }
+    },1000)
 }
+
+function incrementScore(number){
+    score +=number;
+    scoreEl.innerText = score;
+    }
+   
     
-
-
-
-
-
+function gameOver(){
+    clearInterval(quizTimer);
+    resultsEl.classList.remove('hide')
+    inputEl.classList.remove('hide')
+    resultsEl.addEventListener('click', addScore)
+    // display input and button for input give onclick that saves the score to local storage 
+    // Make a button that lets you view high score 
+} 
+function addScore(event){
+   var recentScore = localStorage.getItem('score');
+   console.log("this saves the game");
+}
 
 function setNextQuestion() {
     resetState()
@@ -59,7 +82,9 @@ question.answers.forEach(answer => {
 
 function resetState() {
     clearStatusClass(document.body)
+    inputEl.classList.add('hide')
     nextButton.classList.add('hide')
+    resultsEl.classList.add('hide')
     while(answerEl.firstChild) {
         answerEl.removeChild
         (answerEl.firstChild)
@@ -69,6 +94,13 @@ function resetState() {
 function selectAnswer(event) {
     var selectedButton = event.target
     var correct = selectedButton.dataset.correct
+    console.log(correct)
+    if(!correct) {
+        roundTime -= 5;
+        timerEl.textContent = roundTime;
+    } else {
+        incrementScore(correct_answers);
+    }
     setStatusClass(document.body, correct)
     Array.from(answerEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -78,6 +110,7 @@ function selectAnswer(event) {
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
+        gameOver();
     }
 }
 
@@ -121,5 +154,12 @@ const questions = [
     {text: 'Push to Git Hub', correct:false},
     {text: 'console.log', correct:true},
     ]
- }
+ },  {question: 'How do you write "Hello World" in an alert box?',
+ answers: [
+ {text: 'msgBox("Hello World")', correct: false},
+ {text: 'alertBox("Hello World")', correct:false},
+ {text: 'msg("Hello World")', correct:false},
+ {text: 'alert("Hello World")', correct:true},
+ ]
+}
 ]

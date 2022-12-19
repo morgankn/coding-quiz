@@ -1,6 +1,6 @@
 *, *::before, *::after {
 box-sizing: border-box;
-font-family: Sporting Grotesque;
+font-family: Sporting Grotesque, sans-serif;
 }
 :root {
 --peach: #ed8e83;
@@ -68,10 +68,11 @@ background-color: var(--wrong);
 color: #fae8dd;
 }
 
-.start-btn, .submit-btn, .back-btn {
+.start-btn, .submit-btn, .back-btn, .result-btn, .next-btn {
     font-size: 1.3rem;
     font-weight: bold;
     padding: 8px 16px;
+    margin: 2px;
 }
 
 .controls {
@@ -82,4 +83,13 @@ color: #fae8dd;
 
 .hide {
     display: none;
+}
+
+#username {
+    border-radius: 4px;
+    background-color:#D9804c;
+    width: 100%;
+    font-size: 1.3rem;
+    border: none;
+    box-shadow: 0 0 8px 2px #ffaf80;
 }
