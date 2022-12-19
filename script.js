@@ -54,13 +54,24 @@ function gameOver(){
     resultsEl.classList.remove('hide')
     inputEl.classList.remove('hide')
     resultsEl.addEventListener('click', addScore)
+    localStorage.getItem('score')
+
     // display input and button for input give onclick that saves the score to local storage 
     // Make a button that lets you view high score 
 } 
-function addScore(event){
-   var recentScore = localStorage.getItem('score');
-   console.log("this saves the game");
-}
+ function addScore(event){
+    var previousScore = JSON.parse(localStorage.getItem("score")) || []
+      var recentScore = {
+      user: inputEl.value,
+      score: score
+     }
+     previousScore.push(recentScore)
+    localStorage.setItem("score", JSON.stringify(previousScore))
+     console.log("this saves the game");
+ }
+        
+//    var recentScore = localStorage.getItem('score');
+//    console.log("this saves the game");
 
 function setNextQuestion() {
     resetState()
@@ -85,6 +96,7 @@ function resetState() {
     inputEl.classList.add('hide')
     nextButton.classList.add('hide')
     resultsEl.classList.add('hide')
+    
     while(answerEl.firstChild) {
         answerEl.removeChild
         (answerEl.firstChild)
