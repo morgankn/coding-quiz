@@ -1,6 +1,6 @@
 *, *::before, *::after {
 box-sizing: border-box;
-font-family: Sporting Grotesque, sans-serif;
+font-family: 'Arima Madurai', cursive;
 }
 :root {
 --peach: #ed8e83;

@@ -24,6 +24,7 @@ nextButton.addEventListener('click', () => {
 function startGame(){
 roundTime = 30;
 startTimer();
+scoreEl.innerText = 0;
 score = 0;
 startButton.classList.add('hide')
 shuffleQuestions = questions.sort(() => Math.random() - .5)
@@ -56,8 +57,6 @@ function gameOver(){
     resultsEl.addEventListener('click', addScore)
     localStorage.getItem('score')
 
-    // display input and button for input give onclick that saves the score to local storage 
-    // Make a button that lets you view high score 
 } 
  function addScore(event){
     var previousScore = JSON.parse(localStorage.getItem("score")) || []
@@ -69,9 +68,6 @@ function gameOver(){
     localStorage.setItem("score", JSON.stringify(previousScore))
      console.log("this saves the game");
  }
-        
-//    var recentScore = localStorage.getItem('score');
-//    console.log("this saves the game");
 
 function setNextQuestion() {
     resetState()
@@ -173,5 +169,25 @@ const questions = [
  {text: 'msg("Hello World")', correct:false},
  {text: 'alert("Hello World")', correct:true},
  ]
+}, {question: 'Java and Javascript are the same thing.',
+answers: [
+{text: 'True', correct: false},
+{text: 'False', correct:true},
+]
+}, {question: 'How do you create a function?',
+answers: [
+{text: 'function myFunction()', correct: true},
+{text: 'function:myFunction()', correct:false},
+{text: 'function=myFunction()', correct:false},
+{text: 'function-myFunction[]', correct:false},
+]
+},{question: 'What will the code return? Boolean(3 < 7)',
+answers: [
+{text: 'False', correct: false},
+{text: 'SyntaxError', correct:false},
+{text: 'True', correct:true},
+{text: 'NaN', correct:false},
+]
 }
+
 ]
